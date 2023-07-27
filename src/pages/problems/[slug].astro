@@ -1,10 +1,10 @@
 ---
 import { CollectionEntry, getCollection } from "astro:content";
-import { StoreSchema } from "../../content/config";
-import StoreItemLayout from "../../layouts/StoreItemLayout.astro";
+import { ProblemsSchema } from "../../content/config";
+import ProblemLayout from "../../layouts/ProblemLayout.astro";
 
 export async function getStaticPaths() {
-  const itemEntries = await getCollection("store");
+  const itemEntries = await getCollection("problems");
   return itemEntries.map((entry) => ({
     params: { slug: entry.slug },
     props: { entry },
@@ -12,26 +12,19 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  entry: CollectionEntry<"store">;
+  entry: CollectionEntry<"problems">;
 }
 
 const { entry } = Astro.props;
-const item: StoreSchema = entry.data;
+const item: ProblemsSchema = entry.data;
 const { Content } = await entry.render();
 ---
 
-<StoreItemLayout
+<ProblemLayout
   title={item.title}
   description={item.description}
   heroImage={item.heroImage}
   updatedDate={item.updatedDate}
-  heroImage={item.heroImage}
-  pricing={item.pricing}
-  oldPricing={item.oldPricing}
-  checkoutUrl={item.checkoutUrl}
-  badge={item.badge}
-  custom_link={item.custom_link}
-  custom_link_label={item.custom_link_label}
 >
   <Content />
-</StoreItemLayout>
+</ProblemLayout>
