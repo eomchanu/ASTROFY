@@ -5,17 +5,17 @@ import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }) {
   const problems = await getCollection("problems");
-  problems.sort((a, b) => b.data.updatedDate.valueOf() - a.data.updatedDate.valueOf());
+  problems.sort((a, b) => b.data.solvedDate.valueOf() - a.data.solvedDate.valueOf());
   return paginate(problems, { pageSize: 10 });
 }
 const { page } = Astro.props;
 ---
 
 <BaseLayout title="Problems" sideBarActiveitemID="problems">
-  <ul>
+  <div class="grid grid-cols-2 gap-4">
     {
       page.data.map((problem) => (
-        <>
+        <div>
           <HorizontalProblem
             title={problem.data.title}
             img={problem.data.heroImage}
@@ -23,10 +23,10 @@ const { page } = Astro.props;
             url={"/problems/" + problem.slug}
           />
           <div class="divider my-0" />
-        </>
+        </div>
       ))
     }
-  </ul>
+  </div>
 
   <div class="flex justify-between">
     {

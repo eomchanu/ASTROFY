@@ -25,13 +25,7 @@ const storeSchema = z.object({
 const problemsSchema = z.object({
     title: z.string(),
     description: z.string(),
-    custom_link_label: z.string(),
-    custom_link: z.string().optional(),
-    updatedDate: z.coerce.date(),
-    pricing: z.string().optional(),
-    oldPricing:  z.string().optional(),
-    badge: z.string().optional(),
-    checkoutUrl: z.string().optional(),
+    solvedDate: z.coerce.date(),
     heroImage: z.string().optional(),
 });
 

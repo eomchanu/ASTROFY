@@ -9,12 +9,12 @@ export interface Props extends ProblemsSchema {}
 const {
   title,
   description,
-  updatedDate,
+  solvedDate,
   heroImage,
 } = Astro.props;
 
 dayjs.extend(localizedFormat);
-const displayDate = dayjs(updatedDate).format("ll");
+const displayDate = dayjs(solvedDate).format("ll");
 import { Image } from "@astrojs/image/components";
 ---
 
